@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-->不用listview是因为我想试验一下传说中的利用recyclerview会有header和content
+    的position不对应的情况<!-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_gravity="start"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/maintoolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:titleTextColor="@color/white"
+                android:title="@string/main_activity_name">
+            </android.support.v7.widget.Toolbar>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/maincontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ZhiHuClient</string>
+    <string name="main_activity_name">首页</string>
+    <string name="search_menu">查找</string>
+    <string name="message_menu">消息</string>
+    <string name="about">关于</string>
+    <string name="exit">退出</string>
 </resources>

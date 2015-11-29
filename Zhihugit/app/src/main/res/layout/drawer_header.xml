@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary">
+
+    <com.zhangtao.circleavatar.CircleImageView
+        android:id="@+id/circle_avater"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/avater"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="25dp"/>
+    <TextView
+        android:layout_below="@+id/circle_avater"
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        tools:text="张同学"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/description"
+        android:layout_below="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="一句话介绍自己"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/username"
+        android:textColor="@color/white"/>
+
+
+</RelativeLayout>
