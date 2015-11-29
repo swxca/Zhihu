@@ -45,7 +45,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
             new ListType("设置")
     ));
 
+
     public DrawerAdapter(Context context){
+        //打印每个类型
+//        for (int i=0;i<Datas.size();i++)
+//        {
+//            Log.d("Type",i+"  :"+Datas.get(i).getType()+"");
+//        }
         this.mContext=context;
         mInflater= LayoutInflater.from(context);
         //自己定义的item图片大小

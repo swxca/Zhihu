@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="175dp"
     android:background="?attr/colorPrimary">
 
     <com.zhangtao.circleavatar.CircleImageView
@@ -11,7 +11,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/avater"
-        android:layout_marginTop="27dp"
+
         android:layout_marginLeft="25dp"/>
     <TextView
         android:layout_below="@+id/circle_avater"

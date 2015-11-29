@@ -8,4 +8,4 @@
     android:paddingLeft="?attr/listPreferredItemPaddingLeft"
     android:paddingRight="?attr/listPreferredItemPaddingRight"
     android:textAppearance="?attr/textAppearanceListItem"
-    android:textColor="@color/colorPrimary"/>
+    android:textColor="@color/black"/>

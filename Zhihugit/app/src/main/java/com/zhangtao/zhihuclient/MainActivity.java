@@ -3,6 +3,7 @@ package com.zhangtao.zhihuclient;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -48,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
         mContent= (RecyclerView) findViewById(R.id.maincontent);
         MainToolbar= (Toolbar) findViewById(R.id.maintoolbar);
         mDrawerLayout= (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        MainToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(MainToolbar);
         //切记是getSupportActionBar!!!!!!
         ActionBar ab=getSupportActionBar();
+
         //设置三条杠那个图标
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.setLayoutManager(drawerManager);
         //设置分割线
         RecyclerView.ItemDecoration divider=new SampleDivider(this);
-        mDrawer.addItemDecoration(divider);
+        //mDrawer.addItemDecoration(divider);
         //设置适配器
         mDrawerAdapter=new DrawerAdapter(this);
         mDrawer.setAdapter(mDrawerAdapter);
