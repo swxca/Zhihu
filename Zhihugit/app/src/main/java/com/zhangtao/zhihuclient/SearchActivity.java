@@ -11,6 +11,12 @@ import android.widget.Toast;
 
 /**
  * Created by zhangtao on 15/11/30.
+ *
+ * 首先解决的一个问题是Activity进入和退出时候的滑动效果,并不是一直要从底部滑出
+ * 解决一:Android动画,用overridePendingTranslation();
+ * 解二:不用代码都是在XML中进行.
+ * 这里会全部演示,方便自己和别人学习
+ * 见anim和style里
  */
 public class SearchActivity extends AppCompatActivity{
 
@@ -65,21 +71,14 @@ public class SearchActivity extends AppCompatActivity{
             }
         });
     }
-
+    //设置textview的背景
     public void setTextBackgroundBule(TextView textView){
         textView.setBackgroundResource(R.drawable.bule);
     }
-
     public void setTextBackgroundWhite(TextView textView){
         textView.setBackgroundResource(R.drawable.white);
     }
 
-    /**
-     * 首先解决的一个问题是Activity进入和退出时候的滑动效果,并不是一直要从底部滑出
-     * 解决一:Android动画,用overridePendingTranslation();
-     * 解二:不用代码都是在XML中进行.
-     * 这里会全部演示,方便自己和别人学习
-     */
 
     public static void startActivity(Context context,String string){
         Intent intent=new Intent(context,SearchActivity.class);
