@@ -110,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.search:
                 SearchActivity.startActivity(MainActivity.this, "");
                 return true;
+            case R.id.message:
+                MessageActivity.startActivity(MainActivity.this,"");
 
         }
 
