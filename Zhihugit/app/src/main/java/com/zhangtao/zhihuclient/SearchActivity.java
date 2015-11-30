@@ -35,23 +35,25 @@ public class SearchActivity extends AppCompatActivity{
 
     private void initViews() {
         SearchText= (TextView) findViewById(R.id.search_content);
-
+        SearchSomeone= (TextView) findViewById(R.id.search_someone);
+        setTextBackgroundBule(SearchText);
+        setTextBackgroundWhite(SearchSomeone);
         SearchText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchText.getBackground().clearColorFilter();
+                //SearchText.setBackground(null);
                 setTextBackgroundBule(SearchText);
                 setTextBackgroundWhite(SearchSomeone);
                 Toast.makeText(getApplicationContext(), "Click content", Toast.LENGTH_SHORT).show();
             }
         });
-        SearchSomeone= (TextView) findViewById(R.id.search_someone);
+
         SearchSomeone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchText.getBackground().clearColorFilter();
-                setTextBackgroundBule(SearchText);
-                setTextBackgroundWhite(SearchSomeone);
+
+                setTextBackgroundBule(SearchSomeone);
+                setTextBackgroundWhite(SearchText);
                 Toast.makeText(getApplicationContext(),"Click someone",Toast.LENGTH_SHORT).show();
             }
         });
