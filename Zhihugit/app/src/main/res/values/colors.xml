@@ -7,4 +7,5 @@
     <color name="black">#FF080808</color>
     <color name="search_text">#56B0E0</color>
     <color name="line">#DADADA</color>
+    <color name="gray">#E5E5E5</color>
 </resources>
