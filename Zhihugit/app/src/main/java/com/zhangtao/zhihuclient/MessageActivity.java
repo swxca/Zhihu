@@ -32,7 +32,6 @@ public class MessageActivity extends AppCompatActivity {
     private MessageAdapter mMessageAdapter;
     private ImageView RemindImageView,AgreeImageView,MessageImageView,Indicator;
     private List<ImageView> IndicatorsList;
-    private int mCurrentIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,50 +75,36 @@ public class MessageActivity extends AppCompatActivity {
         mViewPager= (ViewPager) findViewById(R.id.message_viewpager);
         mViewPager.setAdapter(mMessageAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            LinearLayout.LayoutParams lp= (LinearLayout.LayoutParams) Indicator.getLayoutParams();
-            int marginleft=getResources().getDimensionPixelSize(R.dimen.indicator_marginleft);
-            int indicatorWidth=getResources().getDimensionPixelSize(R.dimen.indicator_width);
+            int marginleft = getResources().getDimensionPixelSize(R.dimen.indicator_marginleft);
+            int indicatorWidth = getResources().getDimensionPixelSize(R.dimen.indicator_width);
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) Indicator.getLayoutParams();
 
-                    ImageView left=IndicatorsList.get(position);
-                    ImageView right=IndicatorsList.get(position+1);
+                if (positionOffset > 0) {
+                    ImageView left = IndicatorsList.get(position);
+                    ImageView right = IndicatorsList.get(position + 1);
 
                     left.setAlpha(1.3f-positionOffset);
-                    right.setAlpha(positionOffset+0.3f);
-
-                    if (mCurrentIndex==0&&position==0)
+                    right.setAlpha (positionOffset*0.7f+0.3f);
+                    if (position==1)
                     {
-                        lp.leftMargin= (int) (marginleft+indicatorWidth*positionOffset);
-                        Log.d("data",lp.leftMargin+"---"+positionOffset);
-                    }else if (mCurrentIndex==1&&position==0)
-                    {
-                        lp.leftMargin= (int) (2*indicatorWidth+(positionOffset-1)*indicatorWidth+marginleft);
-                    }else if (mCurrentIndex==1&&position==1)
-                    {
-                        lp.leftMargin= (int) (marginleft+2*indicatorWidth+positionOffset*indicatorWidth);
-                    }else if (mCurrentIndex==2&&position==1)
-                    {
-                        lp.leftMargin= (int) (marginleft+3*indicatorWidth-(positionOffset-1)*indicatorWidth);
+                        lp.leftMargin= (int) (indicatorWidth+indicatorWidth*positionOffset);
+                    }else {
+                        lp.leftMargin = (int) (indicatorWidth * positionOffset);
                     }
                     Indicator.setLayoutParams(lp);
                 }
-
-
+            }
             @Override
             public void onPageSelected(int position) {
-                mCurrentIndex=position;
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
-
-
-
     public static void startActivity(Context context,String string){
         Intent intent=new Intent(context,MessageActivity.class);
         intent.putExtra("Data",string);
