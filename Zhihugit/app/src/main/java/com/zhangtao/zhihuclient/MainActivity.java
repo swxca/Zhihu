@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar MainToolbar;
     private DrawerAdapter mDrawerAdapter;
     Intent intent;
+    //记录选中item的位置
     int CheckedPosition;
 
     @Override
@@ -57,24 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        //给每个Item设置监听
         mDrawerAdapter.setOnItemOnClickListener(new DrawerAdapter.OnItemClickListener() {
             @Override
-            public void OnItemClick(View view, int position) {
-
-            }
-
-            @Override
-            public void OnHeaderIconClick(View view,int position) {
-            Log.d("Icon",position+"");
-            }
-
-            @Override
-            public void OnHeaderUsernameClick(View view,int position) {
-                Log.d("name",position+"");
-            }
-
-            @Override
-            public void OnHeaderDesClick(View view,int position) {
+            public void OnItemClick(View view,int position) {
                 Log.d("des",position+"");
                 switch (position)
                 {
@@ -105,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         mContent = (RecyclerView) findViewById(R.id.maincontent);
         MainToolbar = (Toolbar) findViewById(R.id.maintoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //DraweLayout的抽屉设置监听
         mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {

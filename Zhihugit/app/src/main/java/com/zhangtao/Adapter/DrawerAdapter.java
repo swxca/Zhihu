@@ -35,22 +35,16 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private Context mContext;
     private LayoutInflater mInflater;
     MyViewHolder myViewHolder;
+    //Item图片的大小
     private final int mIconSize;
-
+    //除了header之外所有Item的集合
     public static List<View> IconItemList;
+    //第一个Item的布局,用来设置leftmargin
     private android.support.v7.widget.RecyclerView.LayoutParams  layoutParams;
-
-
-
-
+    //监听接口
     public interface OnItemClickListener {
-         void OnItemClick(View view, int position);
 
-         void OnHeaderIconClick(View view,int position);
-
-         void OnHeaderUsernameClick(View view,int position);
-
-         void OnHeaderDesClick(View view,int position);
+         void OnItemClick(View view,int position);
     }
     private OnItemClickListener onItemClickListener;
     public void setOnItemOnClickListener(OnItemClickListener onItemOnClickListener) {
@@ -148,34 +142,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private void setUpItemEvent(final MyViewHolder holder) {
         //Log.d("是否进入setUpItemEvent","");
-        final int layoutPosition = holder.getLayoutPosition();
+
         if (onItemClickListener != null) {
-
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    onItemClickListener.OnItemClick(holder.itemView,layoutPosition);
-                }
-            });
+            final int layoutPosition = holder.getLayoutPosition();
             holder.itemView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.OnHeaderIconClick(holder.CircleimageView,layoutPosition);
-
-                }
-            });
-            holder.itemView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.OnHeaderUsernameClick(holder.username,layoutPosition);
-
-                }
-            });
-            holder.itemView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.OnHeaderDesClick(holder.description,layoutPosition);
+                    onItemClickListener.OnItemClick(holder.description,layoutPosition);
 
                 }
             });
@@ -192,12 +165,12 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         return Datas.get(position).getType();
     }
 
-
+    //将创建好的view和MyViewHolder绑定
     public MyViewHolder setTagViewholder(View view, int viewType) {
         myViewHolder = new MyViewHolder(view, viewType);
         return myViewHolder;
     }
-
+    //为Item设置图片
     public void setIcon(int iconResource, TextView itemName) {
 
         Drawable icon = mContext.getResources().getDrawable(iconResource);
@@ -207,14 +180,14 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
             TextViewCompat.setCompoundDrawablesRelative(itemName, icon, null, null, null);
         }
     }
-
+    //清楚所有的Item的background颜色
     public void ClearAllCheckedItem() {
 
         for (int i = 0; i < IconItemList.size(); i++) {
             IconItemList.get(i).setBackgroundResource(R.color.white);
         }
     }
-
+    //设置某个Item的背景为checked样式
     public void setCheckedItem(int position) {
         switch (position)
         {
