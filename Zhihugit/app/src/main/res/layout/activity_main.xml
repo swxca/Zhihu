@@ -8,14 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-->不用listview是因为我想试验一下传说中的利用recyclerview会有header和content
     的position不对应的情况<!-->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/drawer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white">
 
-    </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:orientation="vertical"
@@ -45,5 +38,20 @@
             </android.support.v7.widget.RecyclerView>
         </RelativeLayout>
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:layout_gravity="start"
+        android:background="@color/white">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+    </FrameLayout>
 
 </android.support.v4.widget.DrawerLayout>

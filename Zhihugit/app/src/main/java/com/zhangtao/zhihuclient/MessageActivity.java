@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -42,40 +43,13 @@ public class MessageActivity extends AppCompatActivity {
 
         initViews();
 
+        initEvent();
+
 
     }
 
-    private void initData() {
-        IndicatorsList=new ArrayList<>();
-        viewPagerFragmentList=new ArrayList<>();
-        AgreeFragment agreeFragment=new AgreeFragment();
-        viewPagerFragmentList.add(agreeFragment);
-        RemindFragment remindFragment=new RemindFragment();
-        viewPagerFragmentList.add(remindFragment);
-        PersonalMessageFragment personalMessageFragment=new PersonalMessageFragment();
-        viewPagerFragmentList.add(personalMessageFragment);
-        mMessageAdapter=new MessageAdapter(getSupportFragmentManager(),viewPagerFragmentList);
-    }
-
-    private void initViews() {
-
-        RemindImageView= (ImageView) findViewById(R.id.message_remind);
-        AgreeImageView= (ImageView) findViewById(R.id.message_agree);
-        MessageImageView= (ImageView) findViewById(R.id.message_personal);
-        RemindImageView.setAlpha(0.3f);
-        AgreeImageView.setAlpha(0.3f);
-        MessageImageView.setAlpha(0.3f);
-        Indicator= (ImageView) findViewById(R.id.message_indicator);
-        IndicatorsList.add(RemindImageView);
-        IndicatorsList.add(AgreeImageView);
-        IndicatorsList.add(MessageImageView);
-
-
-
-        mViewPager= (ViewPager) findViewById(R.id.message_viewpager);
-        mViewPager.setAdapter(mMessageAdapter);
+    private void initEvent() {
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            int marginleft = getResources().getDimensionPixelSize(R.dimen.indicator_marginleft);
             int indicatorWidth = getResources().getDimensionPixelSize(R.dimen.indicator_width);
 
             @Override
@@ -104,6 +78,57 @@ public class MessageActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+        RemindImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(0);
+            }
+        });
+        AgreeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(1);
+            }
+        });
+        MessageImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(2);
+            }
+        });
+
+    }
+
+    private void initData() {
+        IndicatorsList=new ArrayList<>();
+        viewPagerFragmentList=new ArrayList<>();
+        AgreeFragment agreeFragment=new AgreeFragment();
+        viewPagerFragmentList.add(agreeFragment);
+        RemindFragment remindFragment=new RemindFragment();
+        viewPagerFragmentList.add(remindFragment);
+        PersonalMessageFragment personalMessageFragment=new PersonalMessageFragment();
+        viewPagerFragmentList.add(personalMessageFragment);
+        mMessageAdapter=new MessageAdapter(getSupportFragmentManager(),viewPagerFragmentList);
+    }
+
+    private void initViews() {
+
+        RemindImageView= (ImageView) findViewById(R.id.message_remind);
+        AgreeImageView= (ImageView) findViewById(R.id.message_agree);
+        MessageImageView= (ImageView) findViewById(R.id.message_personal);
+        RemindImageView.setAlpha(1f);
+        AgreeImageView.setAlpha(0.3f);
+        MessageImageView.setAlpha(0.3f);
+        Indicator= (ImageView) findViewById(R.id.message_indicator);
+        IndicatorsList.add(RemindImageView);
+        IndicatorsList.add(AgreeImageView);
+        IndicatorsList.add(MessageImageView);
+
+
+
+        mViewPager= (ViewPager) findViewById(R.id.message_viewpager);
+        mViewPager.setAdapter(mMessageAdapter);
+
     }
     public static void startActivity(Context context,String string){
         Intent intent=new Intent(context,MessageActivity.class);

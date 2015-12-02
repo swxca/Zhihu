@@ -8,4 +8,5 @@
     <color name="search_text">#56B0E0</color>
     <color name="line">#DADADA</color>
     <color name="gray">#E5E5E5</color>
+    <color name="itemview_background">#E0E0E0</color>
 </resources>

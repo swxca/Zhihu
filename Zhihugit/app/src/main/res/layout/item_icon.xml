@@ -10,6 +10,7 @@
     android:maxLines="1"
     android:textAppearance="?attr/textAppearanceListItem"
     android:textColor="@color/black"
-    >
+    android:background="@drawable/item_pressed"
+    android:clickable="true">
 
 </TextView>

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,10 +19,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.zhangtao.Adapter.DrawerAdapter;
 import com.zhangtao.divider.SampleDivider;
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar MainToolbar;
     private DrawerAdapter mDrawerAdapter;
     Intent intent;
-    Searchfragment searchfragment;
+    int CheckedPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +52,83 @@ public class MainActivity extends AppCompatActivity {
         initDatas();
 
         initViews();
+
+        initEvent();
     }
+
+    private void initEvent() {
+        mDrawerAdapter.setOnItemOnClickListener(new DrawerAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void OnHeaderIconClick(View view,int position) {
+            Log.d("Icon",position+"");
+            }
+
+            @Override
+            public void OnHeaderUsernameClick(View view,int position) {
+                Log.d("name",position+"");
+            }
+
+            @Override
+            public void OnHeaderDesClick(View view,int position) {
+                Log.d("des",position+"");
+                switch (position)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 8:
+                    case 9:
+                        mDrawerAdapter.ClearAllCheckedItem();
+                        //mDrawerAdapter.setCheckedItem(position);
+                        CheckedPosition=position;
+                        mDrawerLayout.closeDrawer(GravityCompat.START);
+                        Log.d("item",position+"");
+                        break;
+                }
+            }
+        });
+
+    }
+
+
 
     private void initViews() {
         mDrawer = (RecyclerView) findViewById(R.id.drawer);
         mContent = (RecyclerView) findViewById(R.id.maincontent);
         MainToolbar = (Toolbar) findViewById(R.id.maintoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                if (slideOffset>0){
+                    mDrawerAdapter.setCheckedItem(CheckedPosition);
+
+                }
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
         //设置Activity的Lable字体的颜色
         MainToolbar.setTitleTextColor(Color.WHITE);
         //设置toolBar
@@ -118,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     /**
      * 为了别的actiivty打开本Activity
      *
@@ -130,29 +205,5 @@ public class MainActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-    /**
-     * 给一个activity添加一个fragment,并添加进返回栈
-     */
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
 
-    public void addFragment(Fragment fragment, int layout) {
-        fragmentManager = getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(layout, fragment);
-        //fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
-    /**
-     * 为一个activityremove一个fragment
-     */
-
-    public void removeFragment(Fragment fragment) {
-        fragmentManager = getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.remove(fragment);
-        fragmentTransaction.commit();
-
-    }
 }
