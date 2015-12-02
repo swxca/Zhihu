@@ -54,8 +54,9 @@ public class MessageActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                //思路：得到该ImageView的leftmargin然后随着offset改变
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) Indicator.getLayoutParams();
-
+        
                 if (positionOffset > 0) {
                     ImageView left = IndicatorsList.get(position);
                     ImageView right = IndicatorsList.get(position + 1);
