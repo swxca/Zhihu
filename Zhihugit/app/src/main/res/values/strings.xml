@@ -6,4 +6,9 @@
     <string name="about">关于</string>
     <string name="exit">退出</string>
     <string name="clear_unread">清除未读</string>
+    <string name="username">张同学</string>
+    <string name="personal_page">个人主页</string>
+    <string name="information">详细信息</string>
+    <string name="share">分享</string>
+    <string name="edit_personal">编辑个人信息</string>
 </resources>

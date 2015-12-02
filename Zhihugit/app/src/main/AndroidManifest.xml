@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".MessageActivity"/>
+        <activity android:name=".PersonalInformationActivity"
+            android:label="@string/username"/>
 
     </application>
 

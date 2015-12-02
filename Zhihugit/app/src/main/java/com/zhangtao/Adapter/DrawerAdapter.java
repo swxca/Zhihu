@@ -1,29 +1,24 @@
 package com.zhangtao.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
-import android.support.design.widget.NavigationView;
 import android.support.v4.widget.TextViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhangtao.Utils.ListType;
+import com.zhangtao.circleavatar.CircleImageView;
+import com.zhangtao.zhihuclient.MainActivity;
+import com.zhangtao.zhihuclient.PersonalInformationActivity;
 import com.zhangtao.zhihuclient.R;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import static android.widget.LinearLayout.*;
 
@@ -41,6 +36,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public static List<View> IconItemList;
     //第一个Item的布局,用来设置leftmargin
     private android.support.v7.widget.RecyclerView.LayoutParams  layoutParams;
+
     //监听接口
     public interface OnItemClickListener {
 
@@ -65,6 +61,9 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
             new ListType("设置")
     ));
 
+    public CircleImageView mCircleImageView;
+    public TextView username,des;
+
 
     public DrawerAdapter(Context context) {
         this.mContext = context;
@@ -73,6 +72,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         //还是忘记了px,dp,int之间的转换
         mIconSize = context.getResources().getDimensionPixelSize(R.dimen.drawer_icon_size);
         IconItemList = new ArrayList<>();
+
 
 
     }
@@ -114,6 +114,10 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 holder.CircleimageView.setImageResource(listType.getIcon());
                 holder.username.setText(listType.header);
                 holder.description.setText(listType.getName());
+                setHeader((CircleImageView) holder.CircleimageView);
+                setUsername(holder.username);
+                setDes(holder.description);
+                initEvents();
                 break;
             case ListType.TYPE_ICON:
                 holder.iconItem.setText(listType.getName());
@@ -136,8 +140,29 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         setUpItemEvent(holder);
     }
 
+    public void initEvents() {
+        mCircleImageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Log.d("ImagView", "Ssdsdadad");
+                MainActivity.closeDrawer();
+                PersonalInformationActivity.startPersonalInformation(mContext, "");
 
+            }
+        });
+        username.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        des.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
 
 
     private void setUpItemEvent(final MyViewHolder holder) {
@@ -148,7 +173,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
             holder.itemView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.OnItemClick(holder.description,layoutPosition);
+                    onItemClickListener.OnItemClick(holder.description, layoutPosition);
 
                 }
             });
@@ -204,8 +229,20 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 IconItemList.get(position-2).setBackgroundResource(R.color.itemview_background);
             break;
         }
-
     }
+    //得到CircleImageView的实例
+    public void setHeader(CircleImageView circleImageView){
+        this.mCircleImageView=circleImageView;
+    }
+
+    public void setUsername(TextView username){
+        this.username=username;
+    }
+
+    public void setDes(TextView des){
+        this.des=des;
+    }
+
 
 }
 
