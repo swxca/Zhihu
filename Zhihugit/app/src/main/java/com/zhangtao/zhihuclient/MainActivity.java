@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+
 
         initViews();
 
@@ -65,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
         initEvent();
     }
+
+
+
 
     private void initEvent() {
         //给每个Item设置监听
@@ -81,11 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     case 6:
                     case 8:
                     case 9:
-                        mDrawerAdapter.ClearAllCheckedItem();
-                        //mDrawerAdapter.setCheckedItem(position);
-                        CheckedPosition = position;
-                        mDrawerLayout.closeDrawer(GravityCompat.START);
-                        Log.d("item", position + "");
+                        mDrawerReSet(position);
                         break;
                 }
             }
@@ -121,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void mDrawerReSet(int position) {
+        mDrawerAdapter.ClearAllCheckedItem();
+        //mDrawerAdapter.setCheckedItem(position);
+        CheckedPosition = position;
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
 
 
     private void initViews() {

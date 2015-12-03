@@ -17,6 +17,17 @@
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
+
+    <style name="BlackTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#212B30</item>
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="colorAccent">#212B30</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/acyivity_slide_anim</item>
+    </style>
+
+
     <!-->SwipeBackActivity的style<!-->
     <!--<style name="SwipeBackLayout">-->
         <!--<item name="edge_size">50dip</item>-->
