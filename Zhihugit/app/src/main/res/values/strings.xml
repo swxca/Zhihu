@@ -11,4 +11,17 @@
     <string name="information">详细信息</string>
     <string name="share">分享</string>
     <string name="edit_personal">编辑个人信息</string>
+    <string name="my_topic">我的话题</string>
+    <string name="my_attention">我关注的人</string>
+    <string name="attention_me">关注我的人</string>
+    <string name="all_trend">全部动态</string>
+    <string name="answer">答过</string>
+    <string name="question">问过</string>
+    <string name="attention_column">我关注的专栏</string>
+    <string name="column">我的专栏</string>
+    <string name="get_agree">获得赞同</string>
+    <string name="get_thanks">获得感谢</string>
+    <string name="collected">被收藏</string>
+    <string name="shared">被分享</string>
+
 </resources>

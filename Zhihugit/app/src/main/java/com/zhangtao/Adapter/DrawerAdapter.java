@@ -35,14 +35,16 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     //除了header之外所有Item的集合
     public static List<View> IconItemList;
     //第一个Item的布局,用来设置leftmargin
-    private android.support.v7.widget.RecyclerView.LayoutParams  layoutParams;
+    private android.support.v7.widget.RecyclerView.LayoutParams layoutParams;
 
     //监听接口
     public interface OnItemClickListener {
 
-         void OnItemClick(View view,int position);
+        void OnItemClick(View view, int position);
     }
+
     private OnItemClickListener onItemClickListener;
+
     public void setOnItemOnClickListener(OnItemClickListener onItemOnClickListener) {
         this.onItemClickListener = onItemOnClickListener;
     }
@@ -62,7 +64,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     ));
 
     public CircleImageView mCircleImageView;
-    public TextView username,des;
+    public TextView username, des;
 
 
     public DrawerAdapter(Context context) {
@@ -72,7 +74,6 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         //还是忘记了px,dp,int之间的转换
         mIconSize = context.getResources().getDimensionPixelSize(R.dimen.drawer_icon_size);
         IconItemList = new ArrayList<>();
-
 
 
     }
@@ -124,10 +125,9 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 //holder.iconItem.setBackgroundResource(R.color.itemview_background);
                 setIcon(listType.getIcon(), holder.iconItem);
                 IconItemList.add(holder.iconItem);
-                if (position==1)
-                {
+                if (position == 1) {
                     layoutParams = (RecyclerView.LayoutParams) holder.iconItem.getLayoutParams();
-                    layoutParams.topMargin=21;
+                    layoutParams.topMargin = 21;
                     holder.iconItem.setLayoutParams(layoutParams);
                 }
                 break;
@@ -153,13 +153,16 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         username.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.closeDrawer();
+                PersonalInformationActivity.startPersonalInformation(mContext, "");
             }
         });
         des.setOnClickListener(new OnClickListener() {
+
             @Override
             public void onClick(View v) {
-
+                MainActivity.closeDrawer();
+                PersonalInformationActivity.startPersonalInformation(mContext, "");
             }
         });
     }
@@ -195,6 +198,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         myViewHolder = new MyViewHolder(view, viewType);
         return myViewHolder;
     }
+
     //为Item设置图片
     public void setIcon(int iconResource, TextView itemName) {
 
@@ -205,6 +209,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
             TextViewCompat.setCompoundDrawablesRelative(itemName, icon, null, null, null);
         }
     }
+
     //清楚所有的Item的background颜色
     public void ClearAllCheckedItem() {
 
@@ -212,67 +217,67 @@ public class DrawerAdapter extends RecyclerView.Adapter<MyViewHolder> {
             IconItemList.get(i).setBackgroundResource(R.color.white);
         }
     }
+
     //设置某个Item的背景为checked样式
     public void setCheckedItem(int position) {
-        switch (position)
-        {
+        switch (position) {
             case 1:
             case 2:
             case 3:
             case 4:
             case 5:
             case 6:
-                IconItemList.get(position-1).setBackgroundResource(R.color.itemview_background);
+                IconItemList.get(position - 1).setBackgroundResource(R.color.itemview_background);
                 break;
             case 8:
             case 9:
-                IconItemList.get(position-2).setBackgroundResource(R.color.itemview_background);
-            break;
+                IconItemList.get(position - 2).setBackgroundResource(R.color.itemview_background);
+                break;
         }
     }
+
     //得到CircleImageView的实例
-    public void setHeader(CircleImageView circleImageView){
-        this.mCircleImageView=circleImageView;
+    public void setHeader(CircleImageView circleImageView) {
+        this.mCircleImageView = circleImageView;
     }
 
-    public void setUsername(TextView username){
-        this.username=username;
+    public void setUsername(TextView username) {
+        this.username = username;
     }
 
-    public void setDes(TextView des){
-        this.des=des;
+    public void setDes(TextView des) {
+        this.des = des;
     }
 
 
 }
 
-class MyViewHolder extends RecyclerView.ViewHolder{
+class MyViewHolder extends RecyclerView.ViewHolder {
     View separator;
     ImageView CircleimageView;
 
-    TextView username,description,iconItem,NoIconItem;
-    public MyViewHolder(View itemView,int itemType) {
+    TextView username, description, iconItem, NoIconItem;
+
+    public MyViewHolder(View itemView, int itemType) {
         super(itemView);
 
-        switch (itemType)
-        {
+        switch (itemType) {
             case ListType.TYPE_SEPARATOR:
-                separator=itemView.findViewById(R.id.separator);
+                separator = itemView.findViewById(R.id.separator);
                 break;
             case ListType.TYPE_HEADER:
                 CircleimageView = (ImageView) itemView.findViewById(R.id.circle_avater);
-                username= (TextView) itemView.findViewById(R.id.username);
-                description= (TextView) itemView.findViewById(R.id.description);
+                username = (TextView) itemView.findViewById(R.id.username);
+                description = (TextView) itemView.findViewById(R.id.description);
                 break;
             case ListType.TYPE_ICON:
-                iconItem= (TextView) itemView.findViewById(R.id.icon_item);
+                iconItem = (TextView) itemView.findViewById(R.id.icon_item);
                 break;
             case ListType.TYPE_NO_ICON:
-                NoIconItem= (TextView) itemView.findViewById(R.id.no_icon_item);
+                NoIconItem = (TextView) itemView.findViewById(R.id.no_icon_item);
                 break;
         }
     }
-
 
 
 }

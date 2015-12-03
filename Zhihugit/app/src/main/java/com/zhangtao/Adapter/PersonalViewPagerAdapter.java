@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.zhangtao.fragment.detail_information;
-import com.zhangtao.fragment.personal_page;
+import com.zhangtao.fragment.DetailInformationFragment;
+import com.zhangtao.fragment.PersonalPageFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +17,22 @@ public class PersonalViewPagerAdapter extends FragmentPagerAdapter {
 
     List<Fragment> list;
     List<String> titleList;
+    DetailInformationFragment detailInformationFragment;
+    PersonalPageFragment personalPageFragment;
 
     public PersonalViewPagerAdapter(FragmentManager fm,List<String> titleList) {
         super(fm);
         list= new ArrayList<>();
-        list.add(new detail_information());
-        list.add(new personal_page());
+        if (detailInformationFragment ==null)
+        {
+            detailInformationFragment =new DetailInformationFragment();
+        }
+        if (personalPageFragment ==null)
+        {
+            personalPageFragment =new PersonalPageFragment();
+        }
+        list.add(personalPageFragment);
+        list.add(detailInformationFragment);
         this.titleList=titleList;
     }
 

@@ -12,7 +12,7 @@ import com.zhangtao.zhihuclient.R;
 /**
  * Created by zhangtao on 15/12/2.
  */
-public class personal_page extends Fragment {
+public class PersonalPageFragment extends Fragment {
 
     @Nullable
     @Override
