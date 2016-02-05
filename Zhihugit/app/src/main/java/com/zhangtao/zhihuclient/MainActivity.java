@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         initViews();
 
         initToolbar();
@@ -68,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         initEvent();
     }
-
-
 
 
     private void initEvent() {
@@ -138,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
-
-
     }
 
     private void initToolbar() {
@@ -198,13 +193,12 @@ public class MainActivity extends AppCompatActivity {
                 SearchActivity.startActivity(MainActivity.this, "");
                 return true;
             case R.id.message:
-                MessageActivity.startActivity(MainActivity.this,"");
+                MessageActivity.startActivity(MainActivity.this, "");
 
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     /**
@@ -219,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-    public static void closeDrawer(){
+    public static void closeDrawer() {
         mDrawerLayout.closeDrawer(GravityCompat.START);
     }
 
